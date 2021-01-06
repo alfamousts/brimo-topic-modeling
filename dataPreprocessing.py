@@ -8,7 +8,6 @@ from Sastrawi.StopWordRemover.StopWordRemoverFactory import StopWordRemoverFacto
 from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
 from collections import Counter
 
-
 def cleansing(text):
     # remove non-ascii
     text = text.encode('ascii', 'ignore').decode('ascii')
@@ -49,8 +48,8 @@ def createStopword():
     punctuation = list(string.punctuation)
     stopwordsSastrawi = StopWordRemoverFactory().get_stop_words()
     stopwordsNtlk = nltk.corpus.stopwords.words('indonesian')
-    stopwords = stopwordsNtlk + stopwordsSastrawi + punctuation + ['rt', 'via', '…', '•']
-
+    stopwordsNtlkEnglish = nltk.corpus.stopwords.words('english')
+    stopwords = stopwordsNtlk + stopwordsNtlkEnglish + stopwordsSastrawi + punctuation + ['rt', 'via', '…', '•']
     return stopwords
 
 def removeStopword(text,stopwords):
